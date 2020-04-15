@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -61,33 +62,25 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         // set title
         holder.itemTitle.setText(String.valueOf(itemTitles.get(position)));
 
-        // load path to extract mime type (drop subtype) and use to set icon
-        Uri uri = Uri.parse(String.valueOf(itemPaths.get(position)));
-        ContentResolver cR = context.getContentResolver();
-
-        String mime = cR.getType(uri);
-        String type = mime.substring(0, mime.indexOf('/'));
-
+        // set icon based on mime type
+        Drawable icon = null;
+        String type = getItemType(position);
         switch (type) {
             case "audio":
-                holder.typeImage.setImageDrawable(context.getDrawable(R.drawable.ic_audio));
+                icon = context.getDrawable(R.drawable.ic_audio);
                 break;
             case "video":
-                holder.typeImage.setImageDrawable(context.getDrawable(R.drawable.ic_video));
+                icon = context.getDrawable(R.drawable.ic_video);
                 break;
             case "image":
-                holder.typeImage.setImageDrawable(context.getDrawable(R.drawable.ic_image));
+                icon = context.getDrawable(R.drawable.ic_image);
                 break;
             case "text":
-                holder.typeImage.setImageDrawable(context.getDrawable(R.drawable.ic_text));
+            case "application":
+                icon = context.getDrawable(R.drawable.ic_text);
                 break;
         }
-
-
-
-
-
-
+        holder.typeImage.setImageDrawable(icon);
 
 
         // display/play file when row is clicked on
@@ -95,11 +88,29 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View v) {
 
-                //**************************
-                //this is where the file loading/viewing/playing code goes (or at least intent to new activity or whatever)
-                String text = "[placeholder] " + itemTitles.get(position);
-                Toast.makeText(v.getContext(), text ,Toast.LENGTH_SHORT).show();
-                // *********************
+                String type = getItemType(position);
+                switch (type) {
+                    case "audio":
+                        // start activity to play audio
+                        Intent intent = new Intent(context, AudioActivity.class);
+                        intent.putExtra("path", String.valueOf(itemPaths.get(position)));
+                        activity.startActivity(intent);
+                        break;
+                    case "video":
+                        // start activity that plays video
+                        break;
+                    case "image":
+                        // start activity that shows image
+                        break;
+                    case "text":
+                        // start activity that shows plain text
+                        break;
+                    case "application":
+                        // start activity to show pdf/doc/docx (google docs api?)
+                        // (still need to add to mime list)
+                        break;
+                }
+
             }
         });
 
@@ -121,6 +132,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return itemIDs.size();
     }
 
+
+    private String getItemType(int position) {
+        // parse path to uri, use CR to get mime type, drop subtype from string and return
+        Uri uri = Uri.parse(String.valueOf(itemPaths.get(position)));
+        ContentResolver cR = context.getContentResolver();
+        String mime = cR.getType(uri);
+        return mime.substring(0, mime.indexOf('/'));
+    }
 
     // stores references to row's views for use in onBindViewHolder above
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -105,6 +105,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             // build query string for map url (opens in app or web if app unavailable)
             // origin omitted because it defaults to current location
+            // and we may not have it if location permission is denied
             String destination = jobLoc.latitude + "," + jobLoc.longitude;
             String url = "https://www.google.com/maps/dir/?api=1&destination=" + destination;
 
