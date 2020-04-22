@@ -45,7 +45,9 @@ public class UpdateActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("*/*");
-                String[] type = {"image/*", "video/*", "audio/*", "text/*"}; // rough list for now
+                String[] type = {"image/*", "video/*", "audio/*", "text/*",
+                        "application/msword", "application/pdf",
+                        "application/vnd.openxmlformats-officedocument.wordprocessing"};
                 intent.putExtra(Intent.EXTRA_MIME_TYPES, type);
                 startActivityForResult(intent, REQUEST_CODE_OPEN);
             }
@@ -55,6 +57,19 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(UpdateActivity.this);
+
+                boolean ready = true;
+                if (path.equals("")) {
+                    Toast.makeText(UpdateActivity.this, "Please select a file", Toast.LENGTH_SHORT).show();
+                    ready = false;
+                }
+                if (title.equals("")) {
+                    Toast.makeText(UpdateActivity.this, "Please title your item", Toast.LENGTH_SHORT).show();
+                    ready = false;
+                }
+                if (ready) {
+                    db.addItem(title, path);
+                }
 
                 db.updateItem(id, editTitle.getText().toString().trim(),
                         pathText.getText().toString().trim());

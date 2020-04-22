@@ -41,9 +41,12 @@ public class AddActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("*/*");
-                String[] type = {"image/*", "video/*", "audio/*", "text/*"}; // rough list for now...
+                String[] type = {"image/*", "video/*", "audio/*", "text/*",
+                        "application/msword", "application/pdf",
+                        "application/vnd.openxmlformats-officedocument.wordprocessing"};
                 intent.putExtra(Intent.EXTRA_MIME_TYPES, type);
                 startActivityForResult(intent, REQUEST_CODE_OPEN);
+
             }
         });
 
@@ -53,10 +56,20 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(AddActivity.this);
                 String path = pathText.getText().toString();
+                String title = editTitle.getText().toString().trim();
+                boolean ready = true;
+
                 if (path.equals("")) {
                     Toast.makeText(AddActivity.this, "Please select a file", Toast.LENGTH_SHORT).show();
-                } else {
-                    db.addItem(editTitle.getText().toString().trim(), path);
+                    ready = false;
+                }
+                if (title.equals("")) {
+                    Toast.makeText(AddActivity.this, "Please title your item", Toast.LENGTH_SHORT).show();
+                    ready = false;
+                }
+
+                if (ready) {
+                    db.addItem(title, path);
                 }
 
             }
@@ -72,7 +85,10 @@ public class AddActivity extends AppCompatActivity {
             Uri uri;
             if (resultData != null) {
                 uri = resultData.getData();
-                pathText.setText(uri.toString());
+                String path = uri.toString();
+                String title = path.substring(path.lastIndexOf('/'));
+                pathText.setText(path);
+                editTitle.setText(title);
             }
         }
     }

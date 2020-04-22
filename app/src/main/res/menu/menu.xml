@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <item android:id="@+id/view_map"
+    <item
+        android:id="@+id/view_map"
         android:icon="@drawable/ic_map"
-        app:showAsAction="always"
-        android:title="Show Map"
-        ></item>
+        app:showAsAction="ifRoom"
+        android:title="Show Map" />
 
-    <item android:id="@+id/delete_all"
+    <item
+        android:id="@+id/delete_all"
         android:icon="@drawable/ic_delete"
-        app:showAsAction="always"
-        android:title="Delete All"
-        ></item>
+        app:showAsAction="ifRoom"
+        android:title="Delete All" />
 
 
 

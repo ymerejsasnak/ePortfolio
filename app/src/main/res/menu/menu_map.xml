@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/get_directions"
+    <item
+        android:id="@+id/get_directions"
         android:icon="@drawable/ic_directions"
         app:showAsAction="always"
-        android:title="Get Directions"
-        ></item>
+        android:title="Get Directions" />
 
 </menu>

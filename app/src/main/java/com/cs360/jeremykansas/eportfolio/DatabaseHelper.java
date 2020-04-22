@@ -39,6 +39,10 @@ class DatabaseHelper extends SQLiteOpenHelper {
                         ");";
 
         db.execSQL(query);
+
+
+
+
     }
 
     @Override
@@ -107,4 +111,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + TABLE_NAME);
 
     }
+
+
+
 }

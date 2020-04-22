@@ -9,29 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".VideoActivity"
+            android:parentActivityName=".MainActivity" />
 
-        <activity android:name=".AudioActivity"
-            android:parentActivityName=".MainActivity"></activity>
-
+        <activity
+            android:name=".AudioActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".UpdateActivity"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".AddActivity"
             android:label="Add Portfolio Item"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".MainActivity"
             android:label="ePortfolio"
             android:parentActivityName=".LogInActivity" />
-
         <activity android:name=".LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,8 +42,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 

@@ -15,10 +15,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -29,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FloatingActionButton addButton;
     TextView emptyText;
+    ImageView imageView;
+    TextView textView;
+
+
     String userName;
+
 
     DatabaseHelper db;
     ArrayList<String> itemIDs, itemTitles, itemPaths;
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         addButton = findViewById(R.id.addButton);
         emptyText = findViewById(R.id.emptyText);
+        imageView = findViewById(R.id.imageView);
+        textView = findViewById(R.id.textView);
 
         // get user name from preferences
         SharedPreferences preferences = getSharedPreferences("sharedPrefFile", MODE_PRIVATE);
@@ -58,6 +64,24 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivityForResult(intent, 1);
             }
         });
+
+        // once imageview is visible...if clicked it becomes invisible
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        // same for text view
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
 
 
         db = new DatabaseHelper(MainActivity.this);
@@ -120,11 +144,13 @@ public class MainActivity extends AppCompatActivity {
     // reset pref if back button hit from this activity
     @Override
     public boolean onSupportNavigateUp(){
+
         SharedPreferences preferences = getSharedPreferences("sharedPrefFile", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("user", "");
         editor.apply();
         finish();
+
         return true;
     }
 

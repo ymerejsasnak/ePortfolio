@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -23,6 +22,8 @@ public class AudioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio);
+
+        setTitle("Now Playing " + getIntent().getStringExtra("title"));
 
         //  load sound into mediaplayer (path name sent from mainactivity)
         player = MediaPlayer.create(this, Uri.parse(getIntent().getStringExtra("path")));
@@ -58,7 +59,7 @@ public class AudioActivity extends AppCompatActivity {
             }
         });
 
-        // button function and icon depends on if playing or paused
+        // play/pause button function and icon depends on if playing or paused
         playPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,10 +79,11 @@ public class AudioActivity extends AppCompatActivity {
             }
         });
 
+        // seekbar listener -- interact with seekbar to change playback position
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                // nothing needed here
             }
 
             @Override
@@ -110,7 +112,7 @@ public class AudioActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    // stop player, progress to 0, play icon on play button
+    // stop player, reset to start, put play icon on play/pause button
     private void reset() {
         player.stop();
         seekBar.setProgress(0, true);
@@ -123,7 +125,7 @@ public class AudioActivity extends AppCompatActivity {
         playPauseButton.setImageDrawable(getDrawable(R.drawable.ic_play));
     }
 
-    // play: seek to 'progress', start play, set play button to pause icon
+    // play: seek to 'progress', start play, change button icon to pause icon
     private void play(int progress) {
         player.seekTo(progress);
         player.start();

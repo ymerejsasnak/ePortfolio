@@ -13,7 +13,6 @@
         android:layout_marginTop="16dp"
         android:text="Log In"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
@@ -24,7 +23,9 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Name"
+        android:imeOptions="actionGo"
         android:inputType="textPersonName"
+        android:maxLength="16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
