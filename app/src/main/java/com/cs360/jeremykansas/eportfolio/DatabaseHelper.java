@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
  */
 class DatabaseHelper extends SQLiteOpenHelper {
 
-    private Context context;
+    private final Context context;
     private static final String DB_NAME = "Portfolio.db";
     private static final int DB_VER = 1;
 

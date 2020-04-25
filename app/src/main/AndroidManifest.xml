@@ -10,9 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".TextActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".InfoActivity"
+            android:label="ePortfolio Information"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".VideoActivity"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".AudioActivity"
             android:parentActivityName=".MainActivity" />
@@ -22,6 +28,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UpdateActivity"
+            android:label="Update or Delete Item"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddActivity"

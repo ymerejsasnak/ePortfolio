@@ -18,10 +18,10 @@ import android.widget.Toast;
  */
 public class AddActivity extends AppCompatActivity {
 
-    EditText editTitle;
-    TextView pathText;
-    ImageButton fileButton;
-    Button addButton;
+    private EditText editTitle;
+    private TextView pathText;
+    private ImageButton fileButton;
+    private Button addButton;
 
     private static final int REQUEST_CODE_OPEN = 1111;
 
@@ -43,7 +43,7 @@ public class AddActivity extends AppCompatActivity {
                 intent.setType("*/*");
                 String[] type = {"image/*", "video/*", "audio/*", "text/*",
                         "application/msword", "application/pdf",
-                        "application/vnd.openxmlformats-officedocument.wordprocessing"};
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"};
                 intent.putExtra(Intent.EXTRA_MIME_TYPES, type);
                 startActivityForResult(intent, REQUEST_CODE_OPEN);
 

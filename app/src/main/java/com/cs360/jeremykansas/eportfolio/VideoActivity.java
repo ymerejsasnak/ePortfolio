@@ -3,18 +3,17 @@ package com.cs360.jeremykansas.eportfolio;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class VideoActivity extends AppCompatActivity {
 
-    VideoView view;
-    ImageButton playButton, stopButton;
-    MediaPlayer player;
+    private VideoView view;
+    private ImageButton playButton;
+    private ImageButton stopButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,14 @@ public class VideoActivity extends AppCompatActivity {
         view.setVideoPath(getIntent().getStringExtra("path"));
 
 
-
+        view.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                Toast.makeText(VideoActivity.this, "An error has occured with your video.", Toast.LENGTH_SHORT).show();
+                finish();
+                return true; // handled
+            }
+        });
 
         view.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override

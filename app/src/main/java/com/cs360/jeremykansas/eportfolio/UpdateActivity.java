@@ -18,12 +18,15 @@ import android.widget.Toast;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    EditText editTitle;
-    TextView pathText;
-    ImageButton fileButton;
-    Button updateButton, deleteButton;
+    private EditText editTitle;
+    private TextView pathText;
+    private ImageButton fileButton;
+    private Button updateButton;
+    private Button deleteButton;
 
-    String id, title, path;
+    private String id;
+    private String title;
+    private String path;
 
     private static final int REQUEST_CODE_OPEN = 1111;
 
@@ -93,7 +96,7 @@ public class UpdateActivity extends AppCompatActivity {
         }
     }
 
-    void getAndSetIntentData() {
+    private void getAndSetIntentData() {
         if (getIntent().hasExtra("id") &&
             getIntent().hasExtra("title") &&
             getIntent().hasExtra("path")) {
@@ -113,7 +116,7 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     // user must confirm before deleting
-    void confirmDialog() {
+    private void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + title + "?");
         builder.setMessage("Are you sure you want to delete " + title + "?");

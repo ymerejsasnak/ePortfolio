@@ -9,22 +9,15 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -34,9 +27,11 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    private Context context;
-    Activity activity;
-    private ArrayList itemIDs, itemTitles, itemPaths;
+    private final Context context;
+    private final Activity activity;
+    private final ArrayList itemIDs;
+    private final ArrayList itemTitles;
+    private final ArrayList itemPaths;
 
     CustomAdapter(Activity _activity,
                   Context _context,
@@ -108,6 +103,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                         audioIntent.putExtra("title", title);
                         activity.startActivity(audioIntent);
                         break;
+
                     case "video":
                         // start activity that plays video, similar to audio player?
                         Intent videoIntent = new Intent(context, VideoActivity.class);
@@ -115,51 +111,32 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                         videoIntent.putExtra("title", title);
                         activity.startActivity(videoIntent);
                         break;
+
                     case "image":
                         // load image into invisible image view and set it to visible
                         // (covers rest of screen, onclick becomes invisible again)
+                        // this is better than others where a new activity opens,
+                        // but it is inconsistent with how other assets function
                         ImageView imageView = activity.findViewById(R.id.imageView);
                         imageView.setImageURI(uri);
                         imageView.setVisibility(View.VISIBLE);
                         break;
+
                     case "text":
-                        // do like above, but with a text view
-
-                        File file = new File(path);
-
-                        StringBuilder text = new StringBuilder();
-
-                        try {
-                            BufferedReader br = new BufferedReader(new FileReader(file));
-                            String line;
-
-                            while ((line = br.readLine()) != null) {
-                                text.append(line);
-                                text.append('\n');
-                            }
-                            br.close();
-                        }
-                        catch (IOException e) {
-                            // need to add proper error handling here
-                        }
-
-                        TextView textView = activity.findViewById(R.id.textView);
-                        textView.setText(text.toString());
-                        textView.setVisibility(View.VISIBLE);
-
-
+                        // display text file in separate activity
+                        Intent textIntent = new Intent(context, TextActivity.class);
+                        textIntent.setData(uri);
+                        textIntent.putExtra("title", title);
+                        activity.startActivity(textIntent);
                         break;
+
                     case "application":
                         // use intent to open outside app for pdf/doc/docx
                         Intent appIntent = new Intent();
-                        appIntent.setAction(Intent.ACTION_SEND);
-                        appIntent.setDataAndType(uri, type);
+                        appIntent.setAction(Intent.ACTION_VIEW);
+                        appIntent.setDataAndType(uri, getItemType(position));
                         appIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         activity.startActivity(Intent.createChooser(appIntent, "Open with:"));
-
-
-                        break;
-                    default:
                         break;
                 }
 
@@ -204,9 +181,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         String path = String.valueOf(itemPaths.get(position));
         Uri uri = Uri.parse(path);
         ContentResolver cR = context.getContentResolver();
-        String type = cR.getType(uri);
 
-        return type;
+        return cR.getType(uri);
     }
 
     private String getBaseType(int position) {
@@ -216,14 +192,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
 
     // stores references to row's views for use in onBindViewHolder above
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView itemTitle;
-        ImageView typeImage;
-        ImageButton updateButton, shareButton;
-        LinearLayout rowLayout;
+        final TextView itemTitle;
+        final ImageView typeImage;
+        final ImageButton updateButton;
+        final ImageButton shareButton;
+        final LinearLayout rowLayout;
 
-        public MyViewHolder(@NonNull View itemView) {
+        MyViewHolder(@NonNull View itemView) {
             super(itemView);
             itemTitle = itemView.findViewById(R.id.itemTitleText);
             typeImage = itemView.findViewById(R.id.typeImage);

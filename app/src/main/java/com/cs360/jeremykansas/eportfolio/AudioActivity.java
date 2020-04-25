@@ -14,9 +14,10 @@ import java.io.IOException;
 
 public class AudioActivity extends AppCompatActivity {
 
-    MediaPlayer player;
-    ImageButton playPauseButton, stopButton;
-    SeekBar seekBar;
+    private MediaPlayer player;
+    private ImageButton playPauseButton;
+    private ImageButton stopButton;
+    private SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

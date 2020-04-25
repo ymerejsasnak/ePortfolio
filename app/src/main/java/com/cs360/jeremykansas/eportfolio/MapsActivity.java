@@ -28,17 +28,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    static final int PERMISSION_REQUEST_CODE = 99;
-    SupportMapFragment mapFragment;
+    private static final int PERMISSION_REQUEST_CODE = 99;
+    private SupportMapFragment mapFragment;
 
     private GoogleMap mMap;
     private FusedLocationProviderClient fusedLocationProviderClient;
 
     // demo/hardcoded job interview is at SNHU
-    LatLng jobLoc = new LatLng(43.0372, -71.4523);
-    LatLng currentLoc;
+    private final LatLng jobLoc = new LatLng(43.0372, -71.4523);
+    private LatLng currentLoc;
 
-    Marker jobMarker, currentMarker;
+    private Marker jobMarker;
+    private Marker currentMarker;
 
 
     @Override

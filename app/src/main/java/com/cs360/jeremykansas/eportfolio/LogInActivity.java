@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,8 +14,8 @@ import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity {
 
-    EditText userName;
-    Button login;
+    private EditText userName;
+    private Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

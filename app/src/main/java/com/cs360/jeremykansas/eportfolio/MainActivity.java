@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,20 +24,22 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    FloatingActionButton addButton;
-    TextView emptyText;
-    ImageView imageView;
-    TextView textView;
+    private RecyclerView recyclerView;
+    private FloatingActionButton addButton;
+    private TextView emptyText;
+    private ImageView imageView;
+    private TextView textView;
 
 
-    String userName;
+    private String userName;
 
 
-    DatabaseHelper db;
-    ArrayList<String> itemIDs, itemTitles, itemPaths;
+    private DatabaseHelper db;
+    private ArrayList<String> itemIDs;
+    private ArrayList<String> itemTitles;
+    private ArrayList<String> itemPaths;
 
-    CustomAdapter customAdapter;
+    private CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // read data from DB and load data into arraylists
-    void loadData() {
+    private void loadData() {
         Cursor cursor = db.readData();
         if (cursor.getCount() == 0) {
             emptyText.setVisibility(View.VISIBLE);
@@ -136,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.view_map) {
             Intent intent = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(intent);
+        } else if (item.getItemId() == R.id.info) {
+            Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
 
@@ -155,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // confirmation before delete all
-    void confirmDialog() {
+    private void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete All?");
         builder.setMessage("Are you sure you want to delete all items from your portfolio?");
