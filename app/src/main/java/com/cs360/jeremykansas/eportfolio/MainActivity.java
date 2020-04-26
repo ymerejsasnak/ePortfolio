@@ -24,14 +24,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private FloatingActionButton addButton;
     private TextView emptyText;
     private ImageView imageView;
     private TextView textView;
-
-
-    private String userName;
 
 
     private DatabaseHelper db;
@@ -39,22 +34,20 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> itemTitles;
     private ArrayList<String> itemPaths;
 
-    private CustomAdapter customAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        addButton = findViewById(R.id.addButton);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        FloatingActionButton addButton = findViewById(R.id.addButton);
         emptyText = findViewById(R.id.emptyText);
         imageView = findViewById(R.id.imageView);
         textView = findViewById(R.id.textView);
 
         // get user name from preferences
         SharedPreferences preferences = getSharedPreferences("sharedPrefFile", MODE_PRIVATE);
-        userName = preferences.getString("user", "");
+        String userName = preferences.getString("user", "");
         setTitle(userName + "'s ePortfolio");
 
         // call add activity from floating add button
@@ -91,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         itemPaths = new ArrayList<>();
         loadData(); // fill arraylists with data from db
 
-        customAdapter = new CustomAdapter(MainActivity.this,MainActivity.this, itemIDs, itemTitles, itemPaths);
+        CustomAdapter customAdapter = new CustomAdapter(MainActivity.this, MainActivity.this, itemIDs, itemTitles, itemPaths);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 

@@ -12,8 +12,6 @@ import android.widget.VideoView;
 public class VideoActivity extends AppCompatActivity {
 
     private VideoView view;
-    private ImageButton playButton;
-    private ImageButton stopButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +20,8 @@ public class VideoActivity extends AppCompatActivity {
 
         setTitle("Now Playing " + getIntent().getStringExtra("title"));
 
-        playButton = findViewById(R.id.playButton);
-        stopButton = findViewById(R.id.stopButton);
+        ImageButton playButton = findViewById(R.id.playButton);
+        ImageButton stopButton = findViewById(R.id.stopButton);
 
         view = findViewById(R.id.videoView);
         view.setVideoPath(getIntent().getStringExtra("path"));

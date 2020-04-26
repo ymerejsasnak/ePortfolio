@@ -2,4 +2,34 @@
     <string name="app_name">ePortfolio</string>
     <string name="title_activity_maps">Map</string>
 
+    <string name="contact">Contact Us (email link, website, etc.)</string>
+    <string name="rateUs">Please Rate Our App! (with play store link)</string>
+    <string name="about">About Us: quick blurb about company, etc.</string>
+
+    <string name="add">Add</string>
+    <string name="hintTitle">Enter a Title</string>
+    <string name="hintFile">Choose a File</string>
+    <string name="login">Log In</string>
+    <string name="userName">Enter Your Name</string>
+    <string name="emptyText">Empty Portfolio</string>
+
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="title">title</string>
+
+    <string name="fileDescription">File Picker</string>
+    <string name="playPauseDescription">Play/Pause</string>
+    <string name="stopDescription">Stop</string>
+    <string name="mainImageDescription">Work Portfolio Application</string>
+    <string name="imageAssetDescription">Image Asset Display</string>
+    <string name="playDescription">Play</string>
+    <string name="addDescription">Add</string>
+    <string name="shareDescription">Share</string>
+
+    <string name="show_map">Show Map</string>
+    <string name="delete_all">Delete All</string>
+    <string name="info">Info</string>
+
+    <string name="get_directions">Get Directions</string>
+
 </resources>

@@ -20,9 +20,6 @@ public class UpdateActivity extends AppCompatActivity {
 
     private EditText editTitle;
     private TextView pathText;
-    private ImageButton fileButton;
-    private Button updateButton;
-    private Button deleteButton;
 
     private String id;
     private String title;
@@ -37,9 +34,9 @@ public class UpdateActivity extends AppCompatActivity {
 
         editTitle = findViewById(R.id.editTitleUpdate);
         pathText = findViewById(R.id.pathText);
-        fileButton = findViewById(R.id.fileButton);
-        updateButton = findViewById(R.id.updateButton);
-        deleteButton = findViewById(R.id.deleteButton);
+        ImageButton fileButton = findViewById(R.id.fileButton);
+        Button updateButton = findViewById(R.id.updateButton);
+        Button deleteButton = findViewById(R.id.deleteButton);
 
         // same as in add activity...how to easily reuse the code? fragments?
         fileButton.setOnClickListener(new View.OnClickListener() {

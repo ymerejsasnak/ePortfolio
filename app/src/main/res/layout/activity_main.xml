@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:alpha="0.4"
-        android:text="Empty Portfolio"
+        android:text="@string/emptyText"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.524"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        android:contentDescription="@string/imageAssetDescription" />
 
     <TextView
         android:id="@+id/textView"

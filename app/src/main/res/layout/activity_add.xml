@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Add"
+        android:text="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pathText" />
@@ -24,7 +24,8 @@
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTitle"
-        app:srcCompat="@drawable/ic_folder" />
+        app:srcCompat="@drawable/ic_folder"
+        android:contentDescription="@string/fileDescription" />
 
     <EditText
         android:id="@+id/editTitle"
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="320dp"
         android:ems="10"
-        android:hint="title"
+        android:hint="@string/hintTitle"
         android:inputType="textPersonName"
         android:maxLength="32"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:hint="Choose a File"
+        android:hint="@string/hintFile"
         app:layout_constraintEnd_toStartOf="@+id/fileButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTitle" />

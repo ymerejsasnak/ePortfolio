@@ -2,24 +2,18 @@ package com.cs360.jeremykansas.eportfolio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class TextActivity extends AppCompatActivity {
-
-    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +22,13 @@ public class TextActivity extends AppCompatActivity {
 
         setTitle(getIntent().getStringExtra("title"));
 
-        textView = findViewById(R.id.textView);
+        TextView textView = findViewById(R.id.textView);
 
         textView.setText(getAssetText());
     }
 
 
-    String getAssetText() {
+    private String getAssetText() {
         Uri uri = getIntent().getData();
 
         // Stringbuilder to 'gather' the characters

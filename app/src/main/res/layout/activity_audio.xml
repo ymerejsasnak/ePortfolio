@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toStartOf="@+id/divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar"
-        app:srcCompat="@drawable/ic_play" />
+        app:srcCompat="@drawable/ic_play"
+        android:contentDescription="@string/playPauseDescription" />
 
     <ImageButton
         android:id="@+id/stopButton"
@@ -30,7 +31,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/divider"
         app:layout_constraintTop_toBottomOf="@+id/seekBar"
-        app:srcCompat="@drawable/ic_stop" />
+        app:srcCompat="@drawable/ic_stop"
+        android:contentDescription="@string/stopDescription" />
 
     <SeekBar
         android:id="@+id/seekBar"

@@ -16,12 +16,11 @@ import android.widget.Toast;
 /*
  *  Add new data row to table
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class AddActivity extends AppCompatActivity {
 
     private EditText editTitle;
     private TextView pathText;
-    private ImageButton fileButton;
-    private Button addButton;
 
     private static final int REQUEST_CODE_OPEN = 1111;
 
@@ -32,8 +31,8 @@ public class AddActivity extends AppCompatActivity {
 
         editTitle = findViewById(R.id.editTitle);
         pathText = findViewById(R.id.pathText);
-        fileButton = findViewById(R.id.fileButton);
-        addButton = findViewById(R.id.addButton);
+        ImageButton fileButton = findViewById(R.id.fileButton);
+        Button addButton = findViewById(R.id.addButton);
 
         fileButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,19 +7,19 @@
         android:id="@+id/view_map"
         android:icon="@drawable/ic_map"
         app:showAsAction="ifRoom"
-        android:title="Show Map" />
+        android:title="@string/show_map" />
 
     <item
         android:id="@+id/delete_all"
         android:icon="@drawable/ic_delete"
         app:showAsAction="ifRoom"
-        android:title="Delete All" />
+        android:title="@string/delete_all" />
 
     <item
         android:id="@+id/info"
         android:icon="@drawable/ic_info"
         app:showAsAction="ifRoom"
-        android:title="Info" />
+        android:title="@string/info" />
 
 
 

@@ -16,7 +16,6 @@ public class AudioActivity extends AppCompatActivity {
 
     private MediaPlayer player;
     private ImageButton playPauseButton;
-    private ImageButton stopButton;
     private SeekBar seekBar;
 
     @Override
@@ -30,7 +29,7 @@ public class AudioActivity extends AppCompatActivity {
         player = MediaPlayer.create(this, Uri.parse(getIntent().getStringExtra("path")));
 
         playPauseButton = findViewById(R.id.playPauseButton);
-        stopButton = findViewById(R.id.stopButton);
+        ImageButton stopButton = findViewById(R.id.stopButton);
         seekBar = findViewById(R.id.seekBar);
 
         // set seekbar max value to duration of the sound
